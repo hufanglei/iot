@@ -190,7 +190,7 @@ public class ResolveUtils {
     }
 
     /**
-     * 车辆登入数据解析
+     * 车辆登出数据解析
      */
     private static void vehicleLogOutResolveDetail(byte[] otherBytes, Map<String, Object> map, DataInputStream dis) throws IOException {
         //车辆流水号
@@ -268,7 +268,7 @@ public class ResolveUtils {
         BigDecimal total_mileageBigDecimal = new BigDecimal(total_mileage).multiply(new BigDecimal(0.1)).setScale(1, BigDecimal.ROUND_HALF_UP);
         map.put(SITUATION_TOTAL_MILEAGE, "'"+total_mileageBigDecimal+"'");
         //工况采集时间
-        map.put(GATHER_TIME_SITUATION, "'"+(String) map.get(GATHER_TIME)+"'");
+        map.put(GATHER_TIME_SITUATION, (String) map.get(GATHER_TIME));
         //已经读取了19个字节的数据，获取剩余的字节数据，让后面的程序继续解析
         byte[] otherBytes = subArray(bytes, 19, bytes.length - 19);
         return otherBytes;
@@ -320,7 +320,7 @@ public class ResolveUtils {
         //作业结束时间
         setGanterTime(map, dis, WORKING_END_TIME);
         //工况采集时间
-        map.put(GATHER_TIME_WORKING, "'"+(String) map.get(GATHER_TIME)+"'");
+        map.put(GATHER_TIME_WORKING, (String) map.get(GATHER_TIME));
         //已经读取了16个字节的数据，获取剩余的字节数据，让后面的程序继续解析
         byte[] otherBytes = subArray(bytes, 17, bytes.length - 17);
         return otherBytes;
@@ -523,6 +523,10 @@ public class ResolveUtils {
         byte[] otherBytes = subArray(bytes, 21, bytes.length - 21);
         return otherBytes;
     }
+
+
+
+
 
 }
 
