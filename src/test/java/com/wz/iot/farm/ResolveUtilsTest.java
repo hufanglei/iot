@@ -132,6 +132,11 @@ public class ResolveUtilsTest {
             "1403040A0325" +//数据 信息农机作业  结束时间 6个字节
             "5B";//校验
 
+
+    /**
+     * 实时数据测试
+     * @throws IOException
+     */
     @Test
     public void resolve() throws IOException {
 //      System.out.println(s.length());
@@ -139,6 +144,28 @@ public class ResolveUtilsTest {
         bytes = CommonUtils.hexStringToByte(hex4);
         Map<String, Object> resolve = ResolveUtils.resolveRealtime(bytes);
         System.out.println(new Gson().toJson(resolve));
+    }
+
+    /**
+     * 测试车辆登入解析
+     */
+    @Test
+    public void resolveVehicleLogin() {
+        String hexData = "232301FE4C53364841313034314A4737383237323401001E13071A0E0216000338393836303242313033313543303530393432360100D5";
+        byte[] bytes = ResolveUtils.hexStringToByte(hexData);
+        Map<String, Object> stringObjectMap = ResolveUtils.resolveVehicleLogin(bytes);
+        System.out.println(new Gson().toJson(stringObjectMap));
+    }
+
+    /**
+     * 测试车辆登出解析
+     */
+    @Test
+    public void resolveVehicleLogOut() {
+        String hexData = "232304FE4C413942475A4C46304A5959434B30303601000813071A0E02020001D7";
+        byte[] bytes = ResolveUtils.hexStringToByte(hexData);
+        Map<String, Object> stringObjectMap = ResolveUtils.resolveVehicleLogOut(bytes);
+        System.out.println(new Gson().toJson(stringObjectMap));
     }
 
 }

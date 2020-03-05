@@ -195,7 +195,7 @@ public class ResolveUtils {
     private static void vehicleLogOutResolveDetail(byte[] otherBytes, Map<String, Object> map, DataInputStream dis) throws IOException {
         //车辆流水号
         int serial_number = dis.readUnsignedShort();
-        map.put(SERIAL_NUMBER, serial_number);
+        map.put(SERIAL_NUMBER, "'"+serial_number+ "'");
 
     }
 
@@ -207,11 +207,11 @@ public class ResolveUtils {
         if (bytes.length > 0) {
             //车辆流水号
             int serial_number = dis.readUnsignedShort();
-            map.put(SERIAL_NUMBER, serial_number);
+            map.put(SERIAL_NUMBER, "'"+ serial_number+"'");
             //iccid
             byte[] iccidArr = new byte[20];
             dis.read(iccidArr);
-            map.put(ICCID, new String(iccidArr));
+            map.put(ICCID,  "'"+new String(iccidArr)+"'");
         }
 
     }
